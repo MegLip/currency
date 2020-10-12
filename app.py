@@ -5,16 +5,6 @@ import csv
 
 app = Flask(__name__)
 
-# 1 get information from the bank
-response = requests.get(
-    "http://api.nbp.pl/api/exchangerates/tables/C?format=json")
-data = response.json()
-
-# 2 def 'data' list (with 'currency', 'code', 'bid', 'ask')
-rates = data[0]['rates']
-code_ex = [rates[i]['code'] for i, j in enumerate(rates)]
-actual_date = data[0]['effectiveDate']
-
 
 def export_data_to_csv():
     with open('details{}.csv'.format(actual_date), 'w', newline='') as csvfile:
@@ -45,7 +35,12 @@ def main():
             currency=currency, ask=ask, result=result)
 
 
-# 5 run program
 if __name__ == "__main__":
+    response = requests.get(
+        "http://api.nbp.pl/api/exchangerates/tables/C?format=json")
+    data = response.json()
+    rates = data[0]['rates']
+    code_ex = [rates[i]['code'] for i, j in enumerate(rates)]
+    actual_date = data[0]['effectiveDate']
     export_data_to_csv()
     app.run()
