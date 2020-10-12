@@ -1,11 +1,8 @@
 {% extends "base.html" %}
-
 {% block content %}
-
     <p>Waluta zakupu: <b>{{currency}}</b></p>
     <p>Potrzebna kwota: <b>{{'%0.2f'| format(amount)}} {{code}}</b></p>
     <p>Aktualny kurs: <b>{{ask}}</b></p>
     <p>Koszt zakupu: <b>{{'%0.2f'| format(result)}} PLN</b></p>
-    <a href = "/">Wróc do kalkulatora</a>
-    
+    <a href = "/">Wróc do kalkulatora</a>  
 {% endblock %}
