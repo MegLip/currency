@@ -6,7 +6,17 @@ import csv
 app = Flask(__name__)
 
 
+def get_data():
+    response = requests.get(
+        "http://api.nbp.pl/api/exchangerates/tables/C?format=json")
+    data = response.json()
+    rates = data[0]['rates']
+    code_ex = [rates[i]['code'] for i, j in enumerate(rates)]
+    return rates, code_ex
+
+
 def export_data_to_csv():
+    rates, actual_date = get_data()
     with open('details{}.csv'.format(actual_date), 'w', newline='') as csvfile:
         details = csv.writer(csvfile, delimiter=';')
         details.writerow(['currency', 'code', 'bid', 'ask'])
@@ -20,6 +30,8 @@ def export_data_to_csv():
 
 @app.route("/", methods=['GET', 'POST'])
 def main():
+    rates, code_ex = get_data()
+    
     if request.method == 'GET':
         return render_template("form.html", code_ex=code_ex)
     elif request.method == 'POST':
@@ -36,11 +48,5 @@ def main():
 
 
 if __name__ == "__main__":
-    response = requests.get(
-        "http://api.nbp.pl/api/exchangerates/tables/C?format=json")
-    data = response.json()
-    rates = data[0]['rates']
-    code_ex = [rates[i]['code'] for i, j in enumerate(rates)]
-    actual_date = data[0]['effectiveDate']
     export_data_to_csv()
     app.run()
