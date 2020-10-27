@@ -1,6 +1,8 @@
 # currency
-Modul.9.2 Obsługa API
-* pobieranie danych z API NBP
-* zapisywanie w pliku csv 
-* stworzenie kalkulatora walut.
-Aby zobaczyć gotową stronę, należy uruchomić flask i otworzyć adres: http://localhost:5000.
+Modul.9.2 (API)
+A simple project created to convert amount in indicated currency to PLN. Exchange rate is being read from nbp website.
+
+* downloading data from the NBP API
+* saving to csv file 
+* creating a currency calculator
+To see the finished page, run flask and open the address: http://localhost:5000.
