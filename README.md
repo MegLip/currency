@@ -6,4 +6,5 @@ A simple project created to convert amount in indicated currency to PLN. Exchang
 * downloading data from the NBP API
 * saving to csv file 
 * creating a currency calculator
+
 To see the finished page, run flask and open the address: http://localhost:5000.
