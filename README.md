@@ -1,6 +1,6 @@
 # currency
 Modul.9.2 (API)
-A simple project created to convert amount in indicated currency to PLN. Exchange rate is being read from nbp website.
+** A simple project created to convert amount in indicated currency to PLN. Exchange rate is being read from nbp website.
 
 * downloading data from the NBP API
 * saving to csv file 
