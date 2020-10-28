@@ -12,6 +12,7 @@ def get_data():
     data = response.json()
     rates = data[0]['rates']
     code_ex = [rates[i]['code'] for i, j in enumerate(rates)]
+    actual_date = data[0]['effectiveDate']
     return rates, code_ex
 
 
