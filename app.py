@@ -12,13 +12,12 @@ def get_data():
     data = response.json()
     rates = data[0]['rates']
     code_ex = [rates[i]['code'] for i, j in enumerate(rates)]
-    actual_date = data[0]['effectiveDate']
     return rates, code_ex
 
 
 def export_data_to_csv():
-    rates, actual_date = get_data()
-    with open('details{}.csv'.format(actual_date), 'w', newline='') as csvfile:
+    rates, code_ex = get_data()
+    with open('details.csv', 'w', newline='') as csvfile:
         details = csv.writer(csvfile, delimiter=';')
         details.writerow(['currency', 'code', 'bid', 'ask'])
         for i, j in enumerate(rates):
